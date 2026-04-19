@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For Katriel 💖</title>
+
+<style>
+body {
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #ffd6e7, #ffc0cb);
+    overflow:hidden;
+}
+
+/* floating hearts (soft) */
+.heart {
+    position:absolute;
+    color:#ff99bb;
+    opacity:0.7;
+    animation:float 6s linear infinite;
+}
+@keyframes float {
+    0%{transform:translateY(100vh);opacity:0.8;}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* headings */
+h2 {
+    text-align:center;
+    color:black;
+    margin:5px;
+}
+
+/* chat UI (softer pink) */
+#chatbox {
+    width:90%;
+    max-width:500px;
+    height:280px;
+    margin:10px auto;
+    padding:10px;
+    border-radius:20px;
+    overflow-y:auto;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+}
+
+.you {
+    text-align:right;
+    color:black;
+}
+.abinash {
+    text-align:left;
+    color:black;
+}
+
+/* input */
+input {
+    width:65%;
+    padding:10px;
+    border-radius:20px;
+    border:none;
+    outline:none;
+}
+button {
+    padding:10px 15px;
+    border:none;
+    border-radius:20px;
+    background:#ff5c8a;
+    color:white;
+}
+
+/* tap button */
+.tapBox {
+    width:245px;
+    margin:15px auto;
+    padding:12px;
+    text-align:center;
+    background: rgba(255,255,255,0.25);
+    border-radius:25px;
+    color:white;
+    cursor:pointer;
+}
+
+/* INVITATION */
+.invite {
+    width:300px;
+    height:200px;
+    margin:20px auto;
+    position:relative;
+    perspective:1000px;
+}
+
+.cover {
+    position:absolute;
+    width:50%;
+    height:105%;
+    top:0;
+    background: linear-gradient(to bottom,#ff85a2,#ff4d88);
+    transition:1s;
+    z-index:2;
+}
+
+.left { left:0; border-radius:15px 0 0 15px; }
+.right { right:0; border-radius:0 15px 15px 0; }
+
+.invite.open .left {
+    transform: rotateY(-120deg);
+    transform-origin:left;
+}
+.invite.open .right {
+    transform: rotateY(120deg);
+    transform-origin:right;
+}
+
+/* inside letter */
+.inside {
+    position:absolute;
+    width:100%;
+    height:105%;
+    background: rgba(255,240,245,0.9);
+    border-radius:15px;
+    padding:15px;
+    box-sizing:border-box;
+    font-size:13px;
+    color:#d6584;
+}
+
+/* title */
+.title {
+    font-weight:bold;
+    font-size:16px;
+    margin-bottom:5px;
+}
+
+/* bottom credit */
+.credit {
+    position:absolute;
+    bottom:5px;
+    right:10px;
+    font-size:10px;
+    opacity:0.7;
+}
+</style>
+</head>
+
+<body>
+
+<h2>💖 Abinash 🤍 Katriel 💖</h2>
+
+<div id="chatbox"></div>
+
+<div style="text-align:center;">
+<input id="input" placeholder="Type message...">
+<button onclick="send()">Send</button>
+</div>
+
+<!-- tap -->
+<div class="tapBox" onclick="openInvite()">💌 Open Invitation</div>
+
+<!-- invitation -->
+<div id="invite" class="invite">
+    <div class="cover left"></div>
+    <div class="cover right"></div>
+
+    <div class="inside">
+        <div class="title">Dear Princess 💖</div>
+
+        Oii Katriel… thirumba start pannalama…<br><br>
+
+        Ithu naana unaku coding pannina… kita thata 8hrs aachu 🫠  
+        Luv uu sooo much… 💖<br><br>
+
+        Avolo nadanthutu kuda irukuravangalam poranga… 😶  
+        Un naabagame than varuthu… please start pannalam… 🫠<br><br>
+
+        Ennatha nee mistake pannalum paravala…  
+        Nee ilama iruka mudiyala… 😶❤️‍🩹
+
+        <div class="credit">— Created by FHS</div>
+    </div>
+</div>
+
+<script>
+/* hearts */
+setInterval(()=>{
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="💗";
+ h.style.left=Math.random()*100+"vw";
+ h.style.fontSize=(12+Math.random()*18)+"px";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),6000);
+},400);
+
+/* chat */
+function send(){
+ let input=document.getElementById("input").value;
+ let chat=document.getElementById("chatbox");
+
+ if(input==="") return;
+
+ chat.innerHTML += "<div class='you'>You: "+input+"</div>";
+
+ let reply=getReply(input);
+
+ setTimeout(()=>{
+  chat.innerHTML += "<div class='abinash'>Abinash: "+reply+"</div>";
+  chat.scrollTop=chat.scrollHeight;
+ },600);
+
+ document.getElementById("input").value="";
+}
+
+function getReply(msg){
+ msg=msg.toLowerCase();
+
+ if(msg.includes("saptiya")) return "nee saptiya first sollu na saptan ";
+ if(msg.includes("love")) return "love u more ❤️";
+ if(msg.includes("miss")) return "romba miss panren 😔";
+ if(msg.includes("peru")) return "nee than en princess 💖";
+
+ return "un msg paatha odane calm aagudhu 💓";
+}
+
+/* open invite */
+function openInvite(){
+ document.getElementById("invite").classList.add("open");
+}
+</script>
+
+</body>
+</html>
